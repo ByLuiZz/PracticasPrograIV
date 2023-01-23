@@ -1,0 +1,86 @@
+> var name="jose"
+undefined
+> var name="Andrea"
+undefined
+> name
+'Andrea'
+> var name="Felipe"
+undefined
+> name
+'Felipe'
+
+> let name="Julio"
+Uncaught SyntaxError: Identifier 'name' has already been declared
+> let color="Negro"
+undefined
+> let color="Azul"
+Uncaught SyntaxError: Identifier 'color' has already been declared
+> color="Amarillo"
+'Amarillo'
+> color
+'Amarillo'
+> const name
+... ="Jose"
+Uncaught SyntaxError: Identifier 'name' has already been declared
+> const NAMES="Pablo"
+undefined
+> const NAMES="Jose"
+Uncaught SyntaxError: Identifier 'NAMES' has already been declared
+> NAMES="Jose"
+Uncaught TypeError: Assignment to constant variable.
+
+> for(var i=0; i<5; i++){console.log(i)}
+0
+1
+2
+3
+4
+undefined
+> i
+5
+> for(let j=0; j<5; j++){console.log(j)}
+0
+1
+2
+3
+4
+undefined
+> j
+Uncaught ReferenceError: j is not defined
+
+> var a=5
+undefined
+> typeof(a)
+'number'
+> String(a)
+'5'
+> var a=String(a)
+undefined
+> typeof(a)
+'string'
+
+funcion declarativa
+> var colors = ["Negro", "Amarillo", "Rojo"]
+undefined
+> function getColorsD(valor){console.log(`El color es ${valor}`)}
+undefined
+> for(var i=0; i < colors.length; i++){getColorsD(colors[i])}
+El color es Negro
+El color es Amarillo
+El color es Rojo
+
+funcion de expresion
+ const getColorsA = function(valor){console.log(valor)}
+undefined
+> for(var c of colors){getColorsA(c)}
+Negro
+Amarillo
+Rojo
+undefined
+> const getColorsF = colorF => {console.log(colorF)}
+undefined
+> for(var element of colors){getColorsF(element)}
+Negro
+Amarillo
+Rojo
+undefined
