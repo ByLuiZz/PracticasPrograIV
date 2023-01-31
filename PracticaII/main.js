@@ -23,10 +23,13 @@ addItemButton.addEventListener("click", () => {
     let li = document.createElement("li")
     li.textContent = addItemInput.value
     list.appendChild(li)
-})
-
-
-const delItem = document.querySelector("#removeItem")
-delItem.addEventListener("click", () =>{
-    
+    //limpiar Input
+    document.getElementById("addItem").value = ""
+    //no dejar campo vacio
+    if(addItemInput.value === ""){
+        alert("El cuadro no debe estar vacio")
+        return false
+    }else{
+        return true
+    }
 })
