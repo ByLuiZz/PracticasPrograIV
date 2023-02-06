@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        {{title}}
+        <form>
+            <div class="mb-3">
+                <label for="ControlInput1" class="form-label">Nombre</label>
+                <input type="text"  v-model="nName" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="ControlInput1" class="form-label">Edad</label>
+                <input type="number" v-model="nAge" class="form-control">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" v-model="nGender" type="radio" value="M" >
+                <label class="form-check-label" for="flexCheckDefault">
+                  Masculino
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" v-model="nGender" type="radio" value="F" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Femenino
+                </label>
+              </div>
+
+            <button type="button" v-on:click="addNew()" class="btn btn-success">Agregar</button>
+        </form>
+        <ul>
+            <li v-for="data of dataArray">
+                {{data.name}} | {{data.gender}}
+                <span v-if="data.age>=18">Mayor de edad</span>
+                <span v-else>Menor de edad</span>
+
+            </li>
+        </ul>
+        <h1>Edad Promedio: {{avAge}}</h1>
+        <pre>{{$data}}</pre>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+   <script>
+       const app = Vue.createApp({
+           data(){
+               return{
+                   title:"Programacion Computacional IV",
+                   dataArray:[
+                       {name: "Pablo Carranza", age:30, gender:"M"},
+                       {name:"Sofia Gonzales", age:21, gender:"F"},
+                       {name:"Maria Iraheta", age:17, gender:"F"}
+                   ],
+                   nName:"",
+                   nAge: 0,
+                   nGender: "",
+                   aAge: 0
+               }
+           },
+           methods: {
+               addNew(){
+                   this.dataArray.push ({
+                       name: this.nName, age: this.nAge, gender: this.nGender
+                   })
+
+               }
+           },
+           computed: {
+               avAge(){
+                   this.aAge=0
+                   for (d of this.dataArray){
+                       this.aAge = this.aAge+d.age
+                   }
+                   return this.aAge/(this.dataArray.length);
+               }
+           }
+       }).mount("#app")
+   </script>
+</body>
+</html>
